@@ -179,12 +179,14 @@ jobs:
 
           mv "$APP-$VERSION-$ARCH.AppImage" \
               "$APP-$VERSION-$ARCH.AppImage.zsync" dist
-
       - name: Install cargo-deb
         if: matrix.build == 'x86_64-linux'
-        uses: taiki-e/install-action@0631aa6515c7d545823c67cfae7ef4fc7f490154 # v2.81.8
-        with:
-          tool: cargo-deb
+        run: cargo install cargo-deb --locked
+      # - name: Install cargo-deb
+      #   if: matrix.build == 'x86_64-linux'
+      #   uses: taiki-e/install-action@0631aa6515c7d545823c67cfae7ef4fc7f490154 # v2.81.8
+      #   with:
+      #     tool: cargo-deb
 
       - name: Build Deb
         shell: bash
